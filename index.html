@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Scraper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #007BFF;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Web Scraper</h1>
+
+        <h2>Scrape Website</h2>
+        <form method="post" action="{% url 'scrape_website' %}" autocomplete="off">
+            {% csrf_token %}
+            <label for="url">Enter URL:</label>
+            <input type="text" id="url" name="url" placeholder="https://example.com" required>
+            <button type="submit">Scrape</button>
+        </form>
+
+        <h2>Scrape Image</h2>
+        <form method="post" action="{% url 'scrape_image' %}" autocomplete="off">
+            {% csrf_token %}
+            <label for="image_url">Image URL:</label>
+            <input type="text" id="image_url" name="image_url" placeholder="https://example.com/image.jpg" required>
+            <button type="submit">Scrape Image</button>
+        </form>
+
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraped Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        pre {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    {% if image_data %}
+        <h1>Scraped Image Data</h1>
+        <pre>{{ image_data }}</pre>
+    {% elif data %}
+        <h1>Scraped Data</h1>
+        <pre>{{ data }}</pre>
+    {% elif error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% else %}
+        <p>No data scraped.</p>
+    {% endif %}
+    <a href="{% url 'scrape_website' %}">Back</a>
+</body>
+</html>
+
+
